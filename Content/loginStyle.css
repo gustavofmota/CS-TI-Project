@@ -1,0 +1,59 @@
+﻿body {
+    background: hsla(274, 100%, 48%, 1);
+    background: linear-gradient(90deg, hsla(274, 100%, 48%, 1) 0%, hsla(274, 100%, 22%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(274, 100%, 48%, 1) 0%, hsla(274, 100%, 22%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(274, 100%, 48%, 1) 0%, hsla(274, 100%, 22%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#8B00F5", endColorstr="#400070", GradientType=1 );
+    color: white
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginForm > div{
+    font-size:14px
+}
+
+#loginForm form,#loginForm > div{
+    width:35%
+}
+
+input.login-input:-webkit-autofill,
+input.login-input:-webkit-autofill:hover,
+input.login-input:-webkit-autofill:focus,
+input.login-input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+}
+
+input.login-input {
+    color:white;
+    padding-left: 0;
+    background: transparent;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid white;
+    -webkit-background-clip: text;
+}
+
+input.login-input::placeholder {
+    color: #c375ff;
+    opacity: 1; /* Firefox */
+}
+
+input.login-input:focus::placeholder, input.login-input:active, input.login-input:focus {
+    outline: none;
+    color: white;
+    background: transparent;
+    box-shadow: none;
+    border-color:white;
+}
+
+
+.optionals{
+    width: max-content;
+    font-size:14px;
+}

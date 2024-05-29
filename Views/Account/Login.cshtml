@@ -2,64 +2,45 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Account/_Layout.cshtml";
 }
 
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="row">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="offset-md-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="offset-md-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-outline-dark" />
-                        </div>
-                    </div>
-                    <p>
-                        @Html.ActionLink("Register as a new user", "Register")
-                    </p>
-                    @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
-                }
-            </section>
-        </div>
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
-    </div>
+<main class="align-content-center container h-100" aria-labelledby="title">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "d-flex flex-column gap-3" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2 id="title" class="border-bottom pb-1">@ViewBag.Title</h2>
+            <div class="d-flex">
+
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control mw-100 login-input", placeHolder = "Email" })
+            </div>
+            <p class="p-0 m-0" style="font-size: 14px; color: #FFCC00 "> @Html.ValidationMessageFor(m => m.Email)</p>
+
+            <div class="d-flex">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control mw-100 login-input", placeHolder = "Password" })
+            </div>
+            <p class="p-0 m-0" style="font-size: 14px; color: #FFCC00 ">@Html.ValidationMessageFor(m => m.Password)</p>
+            <div class="d-flex">
+                <input type="submit" value="Log in" class="btn btn-outline-light w-100 mw-100" />
+            </div>
+            <div class="d-flex gap-2 optionals">
+                <p class="m-0">
+                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "", new { @class = "text-light" })
+                </p>
+                <p class="white">●</p>
+                <p class="m-0">
+                    @Html.ActionLink("Don't have an account?", "Register", "", new { @class = "text-light" })
+                </p>
+            </div>
+            @* Enable this once you have account confirmation enabled for password reset functionality*@
+
+        }
+    <div class="border-top mt-4 seperator">@DateTime.Now.Year PennySaver © All Rights Reserved.</div>
+    </section>
 </main>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval");
 }
