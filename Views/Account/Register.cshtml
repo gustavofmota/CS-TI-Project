@@ -1,41 +1,44 @@
 ﻿@model TI_Project.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Account/_Layout.cshtml";
+
 }
 
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
+<main class="align-content-center container h-100" aria-labelledby="title">
+    <section id="loginForm">
+        @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", @class = "d-flex flex-column gap-3" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2 id="title" class="border-bottom pb-1">@ViewBag.Title</h2>
+            <div class="d-flex">
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control mw-100 login-input", placeHolder = "Email" })
             </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            <p class="p-0 m-0" style="font-size: 14px; color: #FFCC00 "> @Html.ValidationMessageFor(m => m.Email)</p>
+
+            <div class="d-flex">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control mw-100 login-input", placeHolder = "Password" })
             </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            <p class="p-0 m-0" style="font-size: 14px; color: #FFCC00 ">@Html.ValidationMessageFor(m => m.Password)</p>
+            <div class="d-flex">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control mw-100 login-input", placeHolder = "Confirm Password" })
             </div>
-        </div>
-        <div class="row">
-            <div class="offset-md-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-outline-dark" />
+            <p class="p-0 m-0" style="font-size: 14px; color: #FFCC00 ">@Html.ValidationMessageFor(m => m.Password)</p>
+            <div class="d-flex">
+                <input type="submit" value="Register" class="btn btn-outline-light w-100 mw-100" />
             </div>
-        </div>
-    }
+            <div class="d-flex gap-2 optionals">
+                <p class="m-0">
+                    @Html.ActionLink("Already have an account?", "Login", "", new { @class = "text-light" })
+                </p>
+            </div>
+            @* Enable this once you have account confirmation enabled for password reset functionality*@
+
+        }
+        <div class="border-top mt-4 seperator">@DateTime.Now.Year PennySaver &copy; All Rights Reserved.</div>
+    </section>
 </main>
 
 @section Scripts {

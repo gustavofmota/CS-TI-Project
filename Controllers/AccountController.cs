@@ -449,7 +449,7 @@ namespace TI_Project.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Category");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
