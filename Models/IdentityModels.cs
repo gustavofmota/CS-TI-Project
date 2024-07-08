@@ -26,6 +26,8 @@ namespace TI_Project.Models
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -34,6 +36,11 @@ namespace TI_Project.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Expense>()
+            .Property(e => e.Amount)
+            .HasPrecision(18, 2);
+
             base.OnModelCreating(modelBuilder);
             // Additional configurations if any
         }

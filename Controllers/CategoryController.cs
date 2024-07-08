@@ -26,7 +26,7 @@ namespace TI_Project.Controllers
             return db.Categories.ToList();
         }
 
-
+        [Authorize(Roles = "admin")]
         // Add a new category
         public ActionResult Create()
         {
@@ -34,15 +34,17 @@ namespace TI_Project.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Category category)
         {
 
             db.Categories.Add(category);
             db.SaveChanges();
+            TempData["msg"] = "Category Created Successfully!";
             return RedirectToAction("Index");
 
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
 
@@ -60,6 +62,7 @@ namespace TI_Project.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(Category category)
         {
             var existingCategory = db.Categories.Find(category.CategoryId);
@@ -71,7 +74,7 @@ namespace TI_Project.Controllers
 
         }
 
-
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             if (db.Categories.Find(id) != null)
