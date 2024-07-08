@@ -14,7 +14,7 @@
 <body class="h-100 w-100 d-flex flex-column justify-content-space-evenly">
     <header class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("PennySaver", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <span class="navbar-brand">PennySaver</span>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
     </header>
      @RenderBody()
     <footer class="container bottom-0 w-100">
-        <p class="border-dark border-top py-2 m-0">@DateTime.Now.Year PennySaver &copy; All Rights Reserved.</p>
+        <p class="border-dark border-top py-2 m-0">&copy; @DateTime.Now.Year PennySaver. All Rights Reserved.</p>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
